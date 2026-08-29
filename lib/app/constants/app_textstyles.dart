@@ -1,217 +1,119 @@
 import 'package:flutter/material.dart';
-import 'app_colors.dart'; // Adjust path based on your project structure
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:resumely/app/constants/app_colors.dart';
 
 class AppTextStyles {
   AppTextStyles._();
 
-  static const String _fontFamily = 'SpaceGrotesk';
+  static const String fontDisplay = 'SpaceGrotesk';
 
-  // Base TextStyle helper
-  static TextStyle _baseStyle({
-    required double fontSize,
-    required Color color,
-    required FontWeight fontWeight,
-  }) {
-    return TextStyle(
-      fontFamily: _fontFamily,
-      fontSize: fontSize,
-      color: color,
-      fontWeight: fontWeight,
-    );
-  }
+  // Display & Headings (Space Grotesk)
+  static TextStyle get h1 => TextStyle(
+        fontFamily: fontDisplay,
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w700,
+        color: AppColors.foreground,
+        letterSpacing: -0.5,
+        height: 1.2,
+      );
 
-  // ==================== WHITE STYLES ====================
-  // Normal (w400)
-  static TextStyle get white8Normal => _baseStyle(
-    fontSize: 8,
-    color: AppColors.white,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get white10Normal => _baseStyle(
-    fontSize: 10,
-    color: AppColors.white,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get white12Normal => _baseStyle(
-    fontSize: 12,
-    color: AppColors.white,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get white14Normal => _baseStyle(
-    fontSize: 14,
-    color: AppColors.white,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get white16Normal => _baseStyle(
-    fontSize: 16,
-    color: AppColors.white,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get white18Normal => _baseStyle(
-    fontSize: 18,
-    color: AppColors.white,
-    fontWeight: FontWeight.w400,
-  );
+  static TextStyle get h2 => TextStyle(
+        fontFamily: fontDisplay,
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w600,
+        color: AppColors.foreground,
+        letterSpacing: -0.3,
+        height: 1.25,
+      );
 
-  // Bold (w700)
-  static TextStyle get white8Bold => _baseStyle(
-    fontSize: 8,
-    color: AppColors.white,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get white10Bold => _baseStyle(
-    fontSize: 10,
-    color: AppColors.white,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get white12Bold => _baseStyle(
-    fontSize: 12,
-    color: AppColors.white,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get white14Bold => _baseStyle(
-    fontSize: 14,
-    color: AppColors.white,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get white16Bold => _baseStyle(
-    fontSize: 16,
-    color: AppColors.white,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get white18Bold => _baseStyle(
-    fontSize: 18,
-    color: AppColors.white,
-    fontWeight: FontWeight.bold,
-  );
+  static TextStyle get h3 => TextStyle(
+        fontFamily: fontDisplay,
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w600,
+        color: AppColors.foreground,
+        letterSpacing: -0.2,
+        height: 1.3,
+      );
 
-  // ==================== BLACK STYLES ====================
-  // Normal (w400)
-  static TextStyle get black8Normal => _baseStyle(
-    fontSize: 8,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get black10Normal => _baseStyle(
-    fontSize: 10,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get black12Normal => _baseStyle(
-    fontSize: 12,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get black14Normal => _baseStyle(
-    fontSize: 14,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get black16Normal => _baseStyle(
-    fontSize: 16,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get black18Normal => _baseStyle(
-    fontSize: 18,
-    color: AppColors.black,
-    fontWeight: FontWeight.w400,
-  );
+  static TextStyle get h4 => TextStyle(
+        fontFamily: fontDisplay,
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w600,
+        color: AppColors.foreground,
+        height: 1.35,
+      );
 
-  // Bold (w700)
-  static TextStyle get black8Bold => _baseStyle(
-    fontSize: 8,
-    color: AppColors.black,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get black10Bold => _baseStyle(
-    fontSize: 10,
-    color: AppColors.black,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get black12Bold => _baseStyle(
-    fontSize: 12,
-    color: AppColors.black,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get black14Bold => _baseStyle(
-    fontSize: 14,
-    color: AppColors.black,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get black16Bold => _baseStyle(
-    fontSize: 16,
-    color: AppColors.black,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get black18Bold => _baseStyle(
-    fontSize: 18,
-    color: AppColors.black,
-    fontWeight: FontWeight.bold,
-  );
+  // Body Styles (Clean Sans)
+  static TextStyle get bodyLarge => TextStyle(
+        fontSize: 15.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.foreground,
+        height: 1.4,
+      );
 
-  // ==================== GRAY STYLES ====================
-  // Normal (w400)
-  static TextStyle get gray8Normal => _baseStyle(
-    fontSize: 8,
-    color: AppColors.gray,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get gray10Normal => _baseStyle(
-    fontSize: 10,
-    color: AppColors.gray,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get gray12Normal => _baseStyle(
-    fontSize: 12,
-    color: AppColors.gray,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get gray14Normal => _baseStyle(
-    fontSize: 14,
-    color: AppColors.gray,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get gray16Normal => _baseStyle(
-    fontSize: 16,
-    color: AppColors.gray,
-    fontWeight: FontWeight.w400,
-  );
-  static TextStyle get gray18Normal => _baseStyle(
-    fontSize: 18,
-    color: AppColors.gray,
-    fontWeight: FontWeight.w400,
-  );
+  static TextStyle get bodyMedium => TextStyle(
+        fontSize: 13.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.foreground,
+        height: 1.4,
+      );
 
-  // Bold (w700)
-  static TextStyle get gray8Bold => _baseStyle(
-    fontSize: 8,
-    color: AppColors.gray,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get gray10Bold => _baseStyle(
-    fontSize: 10,
-    color: AppColors.gray,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get gray12Bold => _baseStyle(
-    fontSize: 12,
-    color: AppColors.gray,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get gray14Bold => _baseStyle(
-    fontSize: 14,
-    color: AppColors.gray,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get gray16Bold => _baseStyle(
-    fontSize: 16,
-    color: AppColors.gray,
-    fontWeight: FontWeight.bold,
-  );
-  static TextStyle get gray18Bold => _baseStyle(
-    fontSize: 18,
-    color: AppColors.gray,
-    fontWeight: FontWeight.bold,
-  );
+  static TextStyle get bodySmall => TextStyle(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textSecondary,
+        height: 1.4,
+      );
+
+  static TextStyle get caption => TextStyle(
+        fontSize: 11.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.mutedForeground,
+        height: 1.3,
+      );
+
+  static TextStyle get overline => TextStyle(
+        fontSize: 10.sp,
+        fontWeight: FontWeight.w600,
+        color: AppColors.mutedForeground,
+        letterSpacing: 1.0,
+        height: 1.2,
+      );
+
+  // Buttons & Labels
+  static TextStyle get buttonText => TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: AppColors.primaryForeground,
+      );
+
+  static TextStyle get secondaryButtonText => TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w600,
+        color: AppColors.foreground,
+      );
+
+  static TextStyle get label => TextStyle(
+        fontSize: 12.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.mutedForeground,
+      );
+
+  static TextStyle get input => TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.foreground,
+      );
+
+  static TextStyle get inputPlaceholder => TextStyle(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w400,
+        color: AppColors.mutedForeground.withValues(alpha: 0.6),
+      );
+
+  // Legacy Helpers
+  static TextStyle get white18Bold => h3;
+  static TextStyle get white16Normal => bodyLarge;
+  static TextStyle get white14Normal => bodyMedium;
+  static TextStyle get gray12Normal => bodySmall;
 }
