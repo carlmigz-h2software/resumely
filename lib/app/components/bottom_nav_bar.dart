@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:resumely/app/components/app_icon.dart';
 import 'package:resumely/app/constants/app_colors.dart';
+import 'package:resumely/app/constants/app_icons.dart';
 import 'package:resumely/app/constants/app_strings.dart';
 import 'package:resumely/app/constants/app_textstyles.dart';
 
@@ -31,22 +33,19 @@ class BottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _NavItem(
-                icon: Icons.home_outlined,
-                activeIcon: Icons.home_rounded,
+                icon: AppIcons.house,
                 label: AppStrings.navBuilder,
                 isSelected: currentIndex == 0,
                 onTap: () => onTap(0),
               ),
               _NavItem(
-                icon: Icons.description_outlined,
-                activeIcon: Icons.description_rounded,
+                icon: AppIcons.fileText,
                 label: AppStrings.navResumes,
                 isSelected: currentIndex == 1,
                 onTap: () => onTap(1),
               ),
               _NavItem(
-                icon: Icons.person_outline_rounded,
-                activeIcon: Icons.person_rounded,
+                icon: AppIcons.user,
                 label: AppStrings.navProfile,
                 isSelected: currentIndex == 2,
                 onTap: () => onTap(2),
@@ -60,15 +59,13 @@ class BottomNavBar extends StatelessWidget {
 }
 
 class _NavItem extends StatelessWidget {
-  final IconData icon;
-  final IconData activeIcon;
+  final dynamic icon;
   final String label;
   final bool isSelected;
   final VoidCallback onTap;
 
   const _NavItem({
     required this.icon,
-    required this.activeIcon,
     required this.label,
     required this.isSelected,
     required this.onTap,
@@ -76,6 +73,8 @@ class _NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final itemColor = isSelected ? AppColors.primary : AppColors.mutedForeground;
+
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12.r),
@@ -84,16 +83,16 @@ class _NavItem extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              isSelected ? activeIcon : icon,
+            AppIcon(
+              icon: icon,
               size: 22.r,
-              color: isSelected ? AppColors.primary : AppColors.mutedForeground,
+              color: itemColor,
             ),
             SizedBox(height: 4.h),
             Text(
               label,
               style: AppTextStyles.caption.copyWith(
-                color: isSelected ? AppColors.primary : AppColors.mutedForeground,
+                color: itemColor,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
               ),
             ),

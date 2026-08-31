@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:resumely/app/components/app_icon.dart';
 import 'package:resumely/app/constants/app_colors.dart';
 import 'package:resumely/app/constants/app_spacing.dart';
 import 'package:resumely/app/constants/app_textstyles.dart';
 
 class AccordionSection extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final dynamic icon;
   final bool isOpen;
   final VoidCallback onToggle;
   final Widget child;
@@ -41,18 +42,13 @@ class AccordionSection extends StatelessWidget {
                 padding: EdgeInsets.all(16.r),
                 child: Row(
                   children: [
-                    Container(
-                      width: 36.r,
-                      height: 36.r,
-                      decoration: BoxDecoration(
-                        color: AppColors.secondary,
-                        borderRadius: AppSpacing.borderRadiusSm,
-                      ),
-                      child: Icon(
-                        icon,
-                        size: 18.r,
-                        color: AppColors.primary,
-                      ),
+                    AppIcon(
+                      icon: icon,
+                      size: 18.r,
+                      color: AppColors.primary,
+                      containerSize: 36.r,
+                      backgroundColor: AppColors.secondary,
+                      borderRadius: AppSpacing.borderRadiusSm,
                     ),
                     AppSpacing.h12,
                     Expanded(

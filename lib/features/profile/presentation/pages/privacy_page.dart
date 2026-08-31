@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:resumely/app/components/card_container.dart';
 import 'package:resumely/app/components/sub_page_scaffold.dart';
 import 'package:resumely/app/constants/app_colors.dart';
 import 'package:resumely/app/constants/app_spacing.dart';
 import 'package:resumely/app/constants/app_textstyles.dart';
+import 'package:resumely/features/profile/presentation/widgets/security_tile.dart';
 
 class PrivacyPage extends StatelessWidget {
   static const path = '/privacy';
@@ -24,14 +24,14 @@ class PrivacyPage extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: Column(
               children: [
-                _SecurityTile(
+                SecurityTile(
                   icon: Icons.lock_outline_rounded,
                   title: 'Change password',
                   subtitle: 'Last updated 3 months ago',
                   onTap: () {},
                 ),
                 const Divider(color: AppColors.border, height: 1),
-                _SecurityTile(
+                SecurityTile(
                   icon: Icons.phonelink_lock_rounded,
                   title: 'Two-factor authentication',
                   subtitle: 'Disabled',
@@ -47,14 +47,14 @@ class PrivacyPage extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: Column(
               children: [
-                _SecurityTile(
+                SecurityTile(
                   icon: Icons.download_outlined,
                   title: 'Download my data',
                   subtitle: 'Get a copy of your resumes and history',
                   onTap: () {},
                 ),
                 const Divider(color: AppColors.border, height: 1),
-                _SecurityTile(
+                SecurityTile(
                   icon: Icons.delete_outline_rounded,
                   title: 'Delete account',
                   subtitle: 'Permanently remove your account and all data',
@@ -65,62 +65,6 @@ class PrivacyPage extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _SecurityTile extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-  final bool isDestructive;
-
-  const _SecurityTile({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-    this.isDestructive = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              size: 18.r,
-              color: isDestructive ? AppColors.destructive : AppColors.mutedForeground,
-            ),
-            AppSpacing.h12,
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: AppTextStyles.bodyMedium.copyWith(
-                      color: isDestructive ? AppColors.destructive : AppColors.foreground,
-                    ),
-                  ),
-                  SizedBox(height: 2.h),
-                  Text(subtitle, style: AppTextStyles.caption),
-                ],
-              ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              size: 18.r,
-              color: AppColors.mutedForeground,
-            ),
-          ],
-        ),
       ),
     );
   }

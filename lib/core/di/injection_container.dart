@@ -8,6 +8,18 @@ import 'package:resumely/features/auth/data/repositories/auth_repository_impl.da
 import 'package:resumely/features/auth/domain/repositories/auth_repository.dart';
 import 'package:resumely/features/auth/domain/usecases/login_usecase.dart';
 import 'package:resumely/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:resumely/features/home/data/datasources/home_local_data_source.dart';
+import 'package:resumely/features/home/data/repositories/home_repository_impl.dart';
+import 'package:resumely/features/home/domain/repositories/home_repository.dart';
+import 'package:resumely/features/home/domain/usecases/get_home_dashboard_usecase.dart';
+import 'package:resumely/features/home/domain/usecases/get_templates_usecase.dart';
+import 'package:resumely/features/profile/data/datasources/profile_local_data_source.dart';
+import 'package:resumely/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:resumely/features/profile/domain/repositories/profile_repository.dart';
+import 'package:resumely/features/profile/domain/usecases/get_faq_items_usecase.dart';
+import 'package:resumely/features/profile/domain/usecases/get_notification_preferences_usecase.dart';
+import 'package:resumely/features/profile/domain/usecases/get_plans_usecase.dart';
+import 'package:resumely/features/profile/domain/usecases/save_notification_preferences_usecase.dart';
 import 'package:resumely/features/resume/data/datasources/resume_local_data_source.dart';
 import 'package:resumely/features/resume/data/repositories/resume_repository_impl.dart';
 import 'package:resumely/features/resume/domain/repositories/resume_repository.dart';
@@ -51,6 +63,40 @@ Future<void> initDependencies() async {
       loginUseCase: sl(),
       authRepository: sl(),
     ),
+  );
+
+  // Features - Home
+  sl.registerLazySingleton<HomeLocalDataSource>(
+    () => HomeLocalDataSourceImpl(),
+  );
+  sl.registerLazySingleton<HomeRepository>(
+    () => HomeRepositoryImpl(localDataSource: sl()),
+  );
+  sl.registerLazySingleton<GetHomeDashboardUseCase>(
+    () => GetHomeDashboardUseCase(sl()),
+  );
+  sl.registerLazySingleton<GetTemplatesUseCase>(
+    () => GetTemplatesUseCase(sl()),
+  );
+
+  // Features - Profile
+  sl.registerLazySingleton<ProfileLocalDataSource>(
+    () => ProfileLocalDataSourceImpl(sharedPreferences: sl()),
+  );
+  sl.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(localDataSource: sl()),
+  );
+  sl.registerLazySingleton<GetPlansUseCase>(
+    () => GetPlansUseCase(sl()),
+  );
+  sl.registerLazySingleton<GetFaqItemsUseCase>(
+    () => GetFaqItemsUseCase(sl()),
+  );
+  sl.registerLazySingleton<GetNotificationPreferencesUseCase>(
+    () => GetNotificationPreferencesUseCase(sl()),
+  );
+  sl.registerLazySingleton<SaveNotificationPreferencesUseCase>(
+    () => SaveNotificationPreferencesUseCase(sl()),
   );
 
   // Features - Resume

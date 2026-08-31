@@ -9,6 +9,8 @@ import 'package:resumely/app/constants/app_colors.dart';
 import 'package:resumely/app/constants/app_spacing.dart';
 import 'package:resumely/app/constants/app_strings.dart';
 import 'package:resumely/app/constants/app_textstyles.dart';
+import 'package:resumely/features/auth/presentation/widgets/auth_divider.dart';
+import 'package:resumely/features/auth/presentation/widgets/auth_header.dart';
 
 class SignupPage extends StatefulWidget {
   static const path = '/signup';
@@ -64,45 +66,14 @@ class _SignupPageState extends State<SignupPage> {
         ),
         AppSpacing.v20,
 
-        // Logo
-        Row(
-          children: [
-            Container(
-              width: 40.r,
-              height: 40.r,
-              decoration: BoxDecoration(
-                gradient: AppColors.primaryGradient,
-                borderRadius: AppSpacing.borderRadiusMd,
-                boxShadow: AppColors.primaryGlow,
-              ),
-              child: Icon(
-                Icons.auto_awesome,
-                size: 20.r,
-                color: AppColors.primaryForeground,
-              ),
-            ),
-            AppSpacing.h10,
-            Text(
-              AppStrings.appTitle,
-              style: AppTextStyles.h3,
-            ),
-          ],
+        // 1. Header & Branding
+        const AuthHeader(
+          title: AppStrings.createAccountTitle,
+          subtitle: AppStrings.createAccountSubtitle,
         ),
         AppSpacing.v24,
 
-        // Heading
-        Text(
-          AppStrings.createAccountTitle,
-          style: AppTextStyles.h1,
-        ),
-        AppSpacing.v6,
-        Text(
-          AppStrings.createAccountSubtitle,
-          style: AppTextStyles.bodySmall,
-        ),
-        AppSpacing.v24,
-
-        // Form
+        // 2. Signup Form
         Form(
           key: _formKey,
           child: Column(
@@ -151,27 +122,11 @@ class _SignupPageState extends State<SignupPage> {
         ),
         AppSpacing.v24,
 
-        // Divider
-        Row(
-          children: [
-            const Expanded(
-              child: Divider(color: AppColors.border, height: 1),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12.w),
-              child: Text(
-                AppStrings.orSignUpWith,
-                style: AppTextStyles.caption,
-              ),
-            ),
-            const Expanded(
-              child: Divider(color: AppColors.border, height: 1),
-            ),
-          ],
-        ),
+        // 3. Divider
+        const AuthDivider(text: AppStrings.orSignUpWith),
         AppSpacing.v20,
 
-        // Social Buttons
+        // 4. Social Auth Options
         SocialAuthButtons(
           onGooglePressed: () => context.go('/home'),
           onApplePressed: () => context.go('/home'),
@@ -179,7 +134,7 @@ class _SignupPageState extends State<SignupPage> {
         ),
         AppSpacing.v32,
 
-        // Sign in link
+        // 5. Sign in switch link
         Center(
           child: Row(
             mainAxisSize: MainAxisSize.min,

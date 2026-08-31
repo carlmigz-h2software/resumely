@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:resumely/app/components/card_container.dart';
 import 'package:resumely/app/components/sub_page_scaffold.dart';
 import 'package:resumely/app/constants/app_colors.dart';
+import 'package:resumely/app/constants/app_icons.dart';
 import 'package:resumely/app/constants/app_spacing.dart';
 import 'package:resumely/app/constants/app_textstyles.dart';
+import 'package:resumely/features/profile/presentation/widgets/help_tile.dart';
 
 class HelpPage extends StatelessWidget {
   static const path = '/help';
@@ -24,72 +26,33 @@ class HelpPage extends StatelessWidget {
             padding: EdgeInsets.zero,
             child: Column(
               children: [
-                _HelpTile(
-                  icon: Icons.article_outlined,
+                HelpTile(
+                  icon: AppIcons.fileText,
                   title: 'How to export to PDF?',
-                  onTap: () {},
+                  onTap: () => context.push('/help/export-guide'),
                 ),
                 const Divider(color: AppColors.border, height: 1),
-                _HelpTile(
-                  icon: Icons.auto_awesome_outlined,
+                HelpTile(
+                  icon: AppIcons.sparkles,
                   title: 'How does AI enhancement work?',
-                  onTap: () {},
+                  onTap: () => context.push('/help/ai-guide'),
                 ),
                 const Divider(color: AppColors.border, height: 1),
-                _HelpTile(
+                HelpTile(
                   icon: Icons.devices_rounded,
                   title: 'Offline editing support',
-                  onTap: () {},
+                  onTap: () => context.push('/help/offline-guide'),
                 ),
                 const Divider(color: AppColors.border, height: 1),
-                _HelpTile(
-                  icon: Icons.chat_bubble_outline_rounded,
+                HelpTile(
+                  icon: AppIcons.messageCircle,
                   title: 'Contact support',
-                  onTap: () {},
+                  onTap: () => context.push('/help/contact-support'),
                 ),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _HelpTile extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final VoidCallback onTap;
-
-  const _HelpTile({
-    required this.icon,
-    required this.title,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-        child: Row(
-          children: [
-            Icon(icon, size: 18.r, color: AppColors.mutedForeground),
-            AppSpacing.h12,
-            Expanded(
-              child: Text(
-                title,
-                style: AppTextStyles.bodyMedium,
-              ),
-            ),
-            Icon(
-              Icons.chevron_right_rounded,
-              size: 18.r,
-              color: AppColors.mutedForeground,
-            ),
-          ],
-        ),
       ),
     );
   }

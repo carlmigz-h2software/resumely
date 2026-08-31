@@ -1,7 +1,6 @@
-import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:resumely/app/components/custom_text_field.dart';
 import 'package:resumely/app/components/gradient_button.dart';
 import 'package:resumely/app/components/social_auth_buttons.dart';
@@ -11,6 +10,8 @@ import 'package:resumely/app/constants/app_spacing.dart';
 import 'package:resumely/app/constants/app_strings.dart';
 import 'package:resumely/app/constants/app_textstyles.dart';
 import 'package:resumely/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:resumely/features/auth/presentation/widgets/auth_divider.dart';
+import 'package:resumely/features/auth/presentation/widgets/auth_header.dart';
 
 class LoginPage extends StatefulWidget {
   static const path = '/login';
@@ -62,45 +63,14 @@ class _LoginPageState extends State<LoginPage> {
         return AppDynamicScaffold(
           children: [
             AppSpacing.v16,
-            // App Logo & Brand Header
-            Row(
-              children: [
-                Container(
-                  width: 40.r,
-                  height: 40.r,
-                  decoration: BoxDecoration(
-                    gradient: AppColors.primaryGradient,
-                    borderRadius: AppSpacing.borderRadiusMd,
-                    boxShadow: AppColors.primaryGlow,
-                  ),
-                  child: Icon(
-                    Icons.auto_awesome,
-                    size: 20.r,
-                    color: AppColors.primaryForeground,
-                  ),
-                ),
-                AppSpacing.h10,
-                Text(
-                  AppStrings.appTitle,
-                  style: AppTextStyles.h3,
-                ),
-              ],
-            ),
-            AppSpacing.v32,
-
-            // Welcome Text
-            Text(
-              AppStrings.welcomeBack,
-              style: AppTextStyles.h1,
-            ),
-            AppSpacing.v6,
-            Text(
-              AppStrings.loginSubtitle,
-              style: AppTextStyles.bodySmall,
+            // 1. Header & Branding
+            const AuthHeader(
+              title: AppStrings.welcomeBack,
+              subtitle: AppStrings.loginSubtitle,
             ),
             AppSpacing.v24,
 
-            // Form
+            // 2. Login Form
             Form(
               key: _formKey,
               child: Column(
@@ -138,27 +108,11 @@ class _LoginPageState extends State<LoginPage> {
             ),
             AppSpacing.v24,
 
-            // Divider "or continue with"
-            Row(
-              children: [
-                const Expanded(
-                  child: Divider(color: AppColors.border, height: 1),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w),
-                  child: Text(
-                    AppStrings.orContinueWith,
-                    style: AppTextStyles.caption,
-                  ),
-                ),
-                const Expanded(
-                  child: Divider(color: AppColors.border, height: 1),
-                ),
-              ],
-            ),
+            // 3. Divider
+            const AuthDivider(text: AppStrings.orContinueWith),
             AppSpacing.v20,
 
-            // Social Buttons
+            // 4. Social Auth Options
             SocialAuthButtons(
               onGooglePressed: () => context.go('/home'),
               onApplePressed: () => context.go('/home'),
@@ -166,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             AppSpacing.v32,
 
-            // Bottom prompt
+            // 5. Sign up switch link
             Center(
               child: Row(
                 mainAxisSize: MainAxisSize.min,
